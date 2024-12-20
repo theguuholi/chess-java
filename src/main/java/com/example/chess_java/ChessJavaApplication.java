@@ -1,11 +1,13 @@
 package com.example.chess_java;
 
 import com.example.chess_java.boardgame.Board;
+import com.example.chess_java.chess.ChessMatch;
 
 public class ChessJavaApplication {
 
 	public static void main(String[] args) {
-		Board board = new Board(8, 8);
+		ChessMatch chessMatch = new ChessMatch();
+		UI.printBoard(chessMatch.getPieces());
 	}
 
 }
