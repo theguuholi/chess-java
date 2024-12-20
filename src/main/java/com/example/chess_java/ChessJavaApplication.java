@@ -1,13 +1,11 @@
 package com.example.chess_java;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.example.chess_java.boardgame.Board;
 
-@SpringBootApplication
 public class ChessJavaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ChessJavaApplication.class, args);
+		Board board = new Board(8, 8);
 	}
 
 }
