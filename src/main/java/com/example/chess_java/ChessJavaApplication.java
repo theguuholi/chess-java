@@ -1,6 +1,5 @@
 package com.example.chess_java;
 
-import com.example.chess_java.boardgame.Board;
 import com.example.chess_java.chess.ChessMatch;
 
 public class ChessJavaApplication {
