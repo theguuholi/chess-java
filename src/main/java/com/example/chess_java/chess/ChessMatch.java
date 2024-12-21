@@ -1,19 +1,20 @@
 package com.example.chess_java.chess;
 
 import com.example.chess_java.boardgame.Board;
+import com.example.chess_java.boardgame.Piece;
 import com.example.chess_java.boardgame.Position;
 import com.example.chess_java.chess.pirces.King;
 import com.example.chess_java.chess.pirces.Rook;
 
 public class ChessMatch {
-    
+
     private Board board;
-    
+
     public ChessMatch() {
         board = new Board(8, 8);
         initialSetup();
     }
-    
+
     public ChessPiece[][] getPieces() {
         ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColumns()];
         for (int i = 0; i < board.getRows(); i++) {
@@ -37,6 +38,27 @@ public class ChessMatch {
         placeNewPiece('e', 7, new Rook(board, Color.BLACK));
         placeNewPiece('e', 8, new Rook(board, Color.BLACK));
         placeNewPiece('d', 8, new King(board, Color.BLACK));
+    }
+
+    public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+        Position source = sourcePosition.toPosition();
+        Position target = targetPosition.toPosition();
+        validateSourcePosition(source);
+        var capturedPiece = (ChessPiece) makeMove(source, target);
+        return capturedPiece;
+    }
+
+    private ChessPiece makeMove(Position source, Position target) {
+        Piece p = board.removePiece(source);
+        Piece capturedPiece = board.removePiece(target);
+        board.placePiece(p, target);
+        return (ChessPiece) capturedPiece;
+    }
+
+    private void validateSourcePosition(Position source) {
+        if (!board.thereIsAPiece(source)) {
+            throw new ChessException("There is no piece on source position");
+        }
     }
 
     private void placeNewPiece(char column, int row, ChessPiece piece) {
