@@ -6,7 +6,7 @@ import com.example.chess_java.boardgame.Piece;
 import lombok.Data;
 
 @Data
-public class ChessPiece extends Piece {
+public abstract class ChessPiece extends Piece {
 
     private Color color;
 
