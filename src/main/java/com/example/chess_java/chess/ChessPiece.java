@@ -2,6 +2,7 @@ package com.example.chess_java.chess;
 
 import com.example.chess_java.boardgame.Board;
 import com.example.chess_java.boardgame.Piece;
+import com.example.chess_java.boardgame.Position;
 
 import lombok.Data;
 
@@ -17,6 +18,11 @@ public abstract class ChessPiece extends Piece {
 
     public Color getColor() {
         return color;
+    }
+
+    protected boolean isThereOpponentPiece(Position position) {
+        ChessPiece p = (ChessPiece) getBoard().piece(position);
+        return p != null && p.getColor() != color;
     }
     
 }
